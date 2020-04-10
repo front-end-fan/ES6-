@@ -52,5 +52,32 @@
            }
         }  
     </script>
+
+    <script>
+        var btn = document.querySelectorAll("#btn")[0];
+        btn.onclcik = function(){
+            // 创建
+            let xhr;
+            if(window.XMLHttpRequest){
+                xhr = new XMLHttpRequest();
+            }else{
+                xhr = new ActiveXObject('Microsoft.XMLHttp');
+            }
+            // 连接
+            xhr.open('GET', '01.php?a=12&b=89', true);
+            // 发送
+            xhr.send();
+            // 接收
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState === 4){
+                    if(xhr.status > 200 && xhr.status < 300 || xhr.status === 304){
+                        alert('成功接收服务器数据 ' + xhr.responeseText);
+                    }else{
+                        alert('失败')
+                    }
+                }
+            }
+        }
+    </script>
 </body>
 </html>
