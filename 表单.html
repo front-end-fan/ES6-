@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title> 
+    <script>
+        const $ = function(...args){
+            return document.querySelectorAll(...args);$
+        }
+        // const $ = document.querySelectorAll.bind(document);
+        window.onload = function(){
+            let form1 = $("#form1")[0]
+            console.log(form1)
+        }
+        
+    </script>
+</head>
+<body>
+    <form action="http://localhost/a.php" method="PSOT" id="form1">
+        用户名 <input type="text" name="user" value="">
+        <br>
+        密码 <input type="password" name="password">
+        <input type="submit" value="提交">
+    </form>
+</body>
+</html>
