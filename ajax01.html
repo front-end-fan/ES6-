@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax01</title> 
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+        <button id="submitBtn">提交</button>
+
+    <script>
+        $("#submitBtn").click(function(){
+            $.ajax({
+                url:'02.php',
+                type: 'POST',
+                data:{
+                    a: 12,
+                    b: 34,
+                }   ,
+                dataType:'text',
+                success(res){
+                    alert('提交成功' + res)
+                },
+                error(){
+                    alert('提交失败')
+                }
+            })
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="按钮" id="btn">
+
+    <script>
+        var btn = document.querySelectorAll("#btn")[0];
+        // 创建XHR
+        let xhr;
+        if(window.XMLHttpRequest){
+            xhr = new XMLHttpRequest();
+        }else{
+            xhr = new ActiveXObject('Microsoft.XMLHttp');
+        }
+        // 连接
+        /*
+            true -- 异步 不会阻塞
+            false -- 同步 会阻塞
+        */
+        xhr.open('GET', '01.php?a=12&b=34', true);
+        alert( xhr.readyState)
+        // 发送
+        xhr.send();
+        // 接收
+        xhr.onreadystatechange = function(){
+            // readyState
+            // 0 -- 初始化 创建
+            // 1 -- 已连接
+            // 2 -- 已发送
+            // 3 -- 已接收 头部
+            // 4 -- 完事
+           if(xhr.readyState === 4){
+                //  http 状态码  status
+                // 1 -- 消息
+                // 2 -- 成功
+                // 3 -- 重定向
+                        // 301 -- 永久重定向
+                        // 301 -- 临时重定向
+                        // 304 -- 缓存 （重定向到本地硬盘） 请求服务器，判断自己的文件是否过期、是否被修改，没变没过期，服务器返回304，重定向导本地硬盘读取数据
+                // 4 -- 请求错误 （客户端）
+                // 5 -- 响应错误 （服务端）
+                if(xhr.status >= 200 && xhr < 300 || xhr === 304){
+                    alert('成功 ' + xhr.responeseText);
+                }else{
+                    alert('失败')
+                }
+           }
+        }  
+    </script>
+</body>
+</html>
