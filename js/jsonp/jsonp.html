@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jsonp</title>
+</head>
+<body>
+  <label for="searchInput">百度一下</label> <input type="text" id="searchInput">
+
+
+   <script>
+       function show(data){
+            alert(JSON.stringify(data))
+        }
+
+
+       window.onload = function(){
+            let oInput = document.getElementById("searchInput");
+
+            var oScript = document.createElement("script");
+            document.body.appendChild(oScript);
+
+            oInput.oninput = function(){
+                    var kw = this.value;
+                    oScript.src = `https://sp1.baidu.com/6LMFsjip0QIZ8tyhnq/?wd=${kw}&callback=show`;
+            };
+       }
+       
+   </script>
+</body>
+</html>
