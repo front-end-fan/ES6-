@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="./js/myAjax.js"></script>
 </head>
 <body>
     <input type="button" value="post提交" id="btn">
@@ -12,30 +13,47 @@
         let btn = document.querySelectorAll("#btn")[0];
 
         btn.onclick = function(){
-            // 创建
-            let xhr;
-            if(window.XMLHttpRequest){
-                xhr = new XMLHttpRequest();
-            }else{      
-                xhr = new ActiveXObject('Microsoft.XMLHTTP');
-            }
-            // 连接
-            xhr.open('POST', '02.php', true);
-            // 发送
-            // post 请求需要设置响应头
-            xhr.setRequestHeader('content-type','application/x-www-form-urlencoded');
-            xhr.send('a=23&b=45');
+            // // 创建
+            // let xhr;
+            // if(window.XMLHttpRequest){
+            //     xhr = new XMLHttpRequest();
+            // }else{      
+            //     xhr = new ActiveXObject('Microsoft.XMLHTTP');
+            // }
+            // // 连接
+            // xhr.open('POST', '02.php', true);
+            // // 发送
+            // // post 请求需要设置响应头
+            // xhr.setRequestHeader('content-type','application/x-www-form-urlencoded');
+            // xhr.send('a=23&b=45');
 
-            // 接收
-            xhr.onreadystatechange = function(){
-                if(xhr.readyState === 4){
-                    if(xhr.readyState >= 2000 && xhr.readyState < 300 || xhr.readyState === 304){
-                        document.write('成功接收数据' + xhr.responseText);
-                    }else{
-                        alert('失败'+ xhr.status)
-                    }
+            // // 接收
+            // xhr.onreadystatechange = function(){
+            //     if(xhr.readyState === 4){
+            //         if(xhr.status >= 2000 && xhr.status < 300 || xhr.status === 304){
+            //             document.write('成功接收数据' + xhr.responseText);
+            //         }else{
+            //             alert('失败'+ xhr.status)
+            //         }
+            //     }
+            // }
+
+
+            myAjax({
+                url:'02.php',
+                data:{
+                    a: 12,
+                    b: 34
+                },
+                type:'post',
+                dataType: 'text',
+                success(data){
+                    alert(data)
+                },
+                error(status){;
+                    alert(status);
                 }
-            }
+            });
         }
     </script>
 </body>
